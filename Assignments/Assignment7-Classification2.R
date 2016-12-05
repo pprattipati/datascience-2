@@ -1,6 +1,7 @@
 # Problem 1: Applying KNN Algorithm
 # Given the following training data, predict the class of the following new example using 
 # k Nearest Neighbour for k=5: age<=30, income=medium, student=yes, credit_rating=fair.
+
 # For similarity measure use a simple match of attribute values:
 #       Similarity(A,B) = sum_over_i(w_i * distance[a_i, b_i] / 4) where 
 #                           distance[a_i, b_i] = 1 if a_i equals b_i
@@ -13,14 +14,16 @@ computer = read.csv("computerBuyer.csv", header=TRUE, stringsAsFactors = FALSE)
 str(computer)
 dim(computer)
 
-# age, income, student, credit rating of the candidate whose 'buy' is to be predicted
-candidate_test = c("youth", "medium", "yes", "fair")
+equalityCheck = function(x,y)
+{
+  return (ifelse(x == y, 1, 0))
+}
 
-# compute the similarity score from the test candidate for every attribute
-age_similarity = ifelse(computer$age == candidate_test[1], 1, 0)
-income_similarity = ifelse(computer$income == candidate_test[2], 1, 0)
-student_similarity = ifelse(computer$student == candidate_test[3], 1, 0)
-credit_rating_similarity = ifelse(computer$credit.rating == candidate_test[4], 1, 0)
+# compute the similarity score for every attribute 
+age_similarity = apply(as.array(computer$age), 1, FUN = equalityCheck, "youth")
+income_similarity = apply(as.array(computer$income), 1, FUN = equalityCheck, "medium")
+student_similarity = apply(as.array(computer$student), 1, FUN = equalityCheck, "yes")
+credit_rating_similarity = apply(as.array(computer$credit.rating), 1, FUN = equalityCheck, "fair")
 
 # compute the overall similarity score from the test candidate (across all attributes)
 # 'income' has a weightage of 2; others have a weightage of 1
