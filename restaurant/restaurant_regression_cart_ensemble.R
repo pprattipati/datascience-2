@@ -34,8 +34,8 @@ varImp(cart_model)
 # Although cp = 0, we have pre-puned based on the default numSplits=20 (min. num of nodes in leaf to split)
 
 # We see that the most important variables are not necessarily the ones at the top; another approach used
-# Important variables are computed by permuting a variable's column values in test data, and
-# re-calculating the accuracy of test data. If accuracy goes down, the variable is important.
+# Important variables are computed by permuting a variable's column values in validatioin data, and
+# re-calculating the accuracy of validation data. If accuracy goes down, the variable is important.
 
 # CART uses a greedy approach to split at each level; hence the top values are not necessarily
 # the most important.
