@@ -28,3 +28,8 @@ stock_plot(s1,s3)
 stock_plot(s1,s4)
 stock_plot(s1,s5)
 stock_plot(s1,s6)
+
+# See why the z-score of mean is '0'
+x = c(10,20,30,40,50)
+x_z = (x - mean(x))/sd(x)
+df = data.frame(x, x_z)
